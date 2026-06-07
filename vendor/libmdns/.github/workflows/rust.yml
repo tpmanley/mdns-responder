@@ -1,0 +1,19 @@
+name: rustfmt
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check formatting
+      run: cargo +stable fmt -- --check
+    - name: Check linting
+      run: cargo +stable clippy -- -Dwarnings
